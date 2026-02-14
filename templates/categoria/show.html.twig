@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}Detalle categoría{% endblock %}
+{% block body %}
+<h1>{{ categoria.nombre }}</h1>
+<p>{{ categoria.descripcion }}</p>
+<form method="post" action="{{ path('app_categoria_delete', {id: categoria.id}) }}" onsubmit="return confirm('¿Seguro?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete_categoria_' ~ categoria.id) }}">
+    <button>Borrar</button>
+</form>
+{% endblock %}

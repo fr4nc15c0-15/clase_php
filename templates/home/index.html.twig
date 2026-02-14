@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inicio - BookMarket{% endblock %}
+
+{% block body %}
+{# Página inicial explicando objetivos del proyecto para defender en DAW. #}
+<h1>BookMarket</h1>
+<p>Proyecto Symfony 6 simple para practicar CRUD, login, Doctrine y Twig.</p>
+<ul>
+    <li>Gestión de libros y categorías.</li>
+    <li>Autenticación básica con email y contraseña.</li>
+    <li>Migraciones y relaciones entre entidades.</li>
+</ul>
+{% if not app.user %}
+    <p><a href="{{ path('app_login') }}">Haz login para empezar</a></p>
+{% endif %}
+{% endblock %}
