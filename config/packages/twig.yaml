@@ -1,0 +1,3 @@
+twig:
+  # Carpeta donde vive la vista Twig.
+  default_path: '%kernel.project_dir%/templates'

@@ -1,0 +1,43 @@
+{# Plantilla base que reutilizan todas las páginas del proyecto. #}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {# Configuración básica de codificación y viewport para móvil. #}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}BookMarket{% endblock %}</title>
+    {# Estilos mínimos inline para mantener el proyecto simple. #}
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        nav a { margin-right: 12px; }
+        .flash-success { background: #ddffdd; padding: 8px; margin: 8px 0; }
+        .flash-error { background: #ffdede; padding: 8px; margin: 8px 0; }
+    </style>
+</head>
+<body>
+{# Menú principal visible en todo el sitio. #}
+<nav>
+    <a href="{{ path('app_home') }}">Inicio</a>
+    {% if app.user %}
+        <a href="{{ path('app_libro_index') }}">Libros</a>
+        <a href="{{ path('app_categoria_index') }}">Categorías</a>
+        <a href="{{ path('app_logout') }}">Cerrar sesión ({{ app.user.nombre }})</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Iniciar sesión</a>
+    {% endif %}
+</nav>
+
+{# Bloque para mostrar mensajes flash de éxito o error. #}
+{% for message in app.flashes('success') %}
+    <div class="flash-success">{{ message }}</div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div class="flash-error">{{ message }}</div>
+{% endfor %}
+
+<hr>
+
+{# Zona donde cada plantilla hija dibuja su contenido específico. #}
+{% block body %}{% endblock %}
+</body>
+</html>

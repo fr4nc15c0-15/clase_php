@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nuevo libro{% endblock %}
+{% block body %}
+<h1>Crear libro</h1>
+{% include 'libro/_form.html.twig' with {form: form, button_label: 'Crear'} %}
+{% endblock %}

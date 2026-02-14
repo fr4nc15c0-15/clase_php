@@ -1,0 +1,4 @@
+controllers:
+  # Carga automática de rutas definidas por atributos en src/Controller.
+  resource: ../../src/Controller/
+  type: attribute

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Categorías{% endblock %}
+{% block body %}
+<h1>Listado de categorías</h1>
+<a href="{{ path('app_categoria_new') }}">Crear categoría</a>
+<table border="1" cellpadding="5">
+    <tr><th>ID</th><th>Nombre</th><th>Acciones</th></tr>
+    {% for categoria in categorias %}
+        <tr>
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.nombre }}</td>
+            <td>
+                <a href="{{ path('app_categoria_show', {id: categoria.id}) }}">Ver</a>
+                <a href="{{ path('app_categoria_edit', {id: categoria.id}) }}">Editar</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="3">No hay categorías todavía.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

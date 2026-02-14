@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Libros{% endblock %}
+{% block body %}
+<h1>Listado de libros</h1>
+<a href="{{ path('app_libro_new') }}">Crear libro</a>
+<table border="1" cellpadding="5">
+    <tr><th>ID</th><th>Título</th><th>Autor</th><th>Precio</th><th>Acciones</th></tr>
+    {% for libro in libros %}
+        <tr>
+            <td>{{ libro.id }}</td>
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.precio }} €</td>
+            <td>
+                <a href="{{ path('app_libro_show', {id: libro.id}) }}">Ver</a>
+                <a href="{{ path('app_libro_edit', {id: libro.id}) }}">Editar</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="5">No hay libros todavía.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

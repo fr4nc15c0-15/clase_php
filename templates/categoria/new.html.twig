@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nueva categoría{% endblock %}
+{% block body %}
+<h1>Crear categoría</h1>
+{% include 'categoria/_form.html.twig' with {form: form, button_label: 'Crear'} %}
+{% endblock %}

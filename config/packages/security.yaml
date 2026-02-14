@@ -1,0 +1,36 @@
+security:
+  # Configuramos el hasher automático para cualquier usuario con contraseña.
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+  # Indicamos de qué entidad se cargan los usuarios al hacer login.
+  providers:
+    app_user_provider:
+      entity:
+        # Clase que actúa como usuario de seguridad.
+        class: App\Entity\Usuario
+        # Campo usado para buscar el usuario introducido en login.
+        property: email
+
+  firewalls:
+    # Firewall de desarrollo: no aplica seguridad a profiler y assets.
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+
+    # Firewall principal de la aplicación.
+    main:
+      lazy: true
+      provider: app_user_provider
+      custom_authenticator: App\Security\LoginFormAuthenticator
+      logout:
+        path: app_logout
+        target: app_home
+      remember_me:
+        secret: '%kernel.secret%'
+        lifetime: 604800
+
+  # Reglas de acceso por URL (de arriba a abajo).
+  access_control:
+    - { path: ^/login, roles: PUBLIC_ACCESS }
+    - { path: ^/, roles: IS_AUTHENTICATED_FULLY }

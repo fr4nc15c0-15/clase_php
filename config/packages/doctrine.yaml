@@ -1,0 +1,24 @@
+doctrine:
+  dbal:
+    # URL de conexión leída desde .env para no hardcodear credenciales.
+    url: '%env(resolve:DATABASE_URL)%'
+    # Indicamos el driver de MySQL moderno.
+    driver: 'pdo_mysql'
+    # Charset recomendado para soportar emojis y acentos correctamente.
+    charset: utf8mb4
+
+  orm:
+    # Permite generar proxies de entidades automáticamente en desarrollo.
+    auto_generate_proxy_classes: true
+    # Activamos lazy ghost objects para mejorar rendimiento de cargas diferidas.
+    enable_lazy_ghost_objects: true
+    # Definimos una forma simple de nombrar tablas y columnas.
+    naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+    # Doctrine detectará entidades mediante atributos PHP (#[ORM\Column]).
+    mappings:
+      App:
+        is_bundle: false
+        type: attribute
+        dir: '%kernel.project_dir%/src/Entity'
+        prefix: 'App\Entity'
+        alias: App

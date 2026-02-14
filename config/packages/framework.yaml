@@ -1,0 +1,7 @@
+framework:
+  # Clave secreta usada por Symfony para CSRF, sesiones y remember_me.
+  secret: '%env(APP_SECRET)%'
+  # Activamos sesiones porque el login necesita guardar estado.
+  session: true
+  # Activamos protección CSRF en formularios.
+  csrf_protection: true

@@ -1,0 +1,11 @@
+{# Parcial reutilizable para el formulario de libros (nuevo y editar). #}
+{{ form_start(form) }}
+    {{ form_row(form.titulo) }}
+    {{ form_row(form.autor) }}
+    {{ form_row(form.descripcion) }}
+    {{ form_row(form.precio) }}
+    {{ form_row(form.estado) }}
+    {{ form_row(form.fechaPublicacion) }}
+    {{ form_row(form.categoria) }}
+    <button>{{ button_label|default('Guardar') }}</button>
+{{ form_end(form) }}
